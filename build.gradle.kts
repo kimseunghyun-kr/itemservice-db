@@ -25,6 +25,11 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    //jdbctemplate
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    //h2 database integration
+    runtimeOnly("com.h2database:h2")
+
     //테스트에서 lombok 사용
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
