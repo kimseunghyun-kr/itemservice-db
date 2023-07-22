@@ -23,6 +23,27 @@ import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.util.*;
 
+/**
+ * NamedParameterJdbcTemplate
+ *
+ * 3 main 'param' candidates
+ * SqlParameterSource
+ *  * interface
+ *  ---impl---
+ * - BeanPropertySqlParameterSource
+ *  * creates a parameter object through JavaBeans property
+ *  * found in findAll() and save()
+ * - MapSqlParameterSource
+ *  * similar to map, but provides sql support such as sql query typing
+ *  * found in update() method
+ *
+ * Map
+ * template.queryForObject(sql, param, itemRowMapper());
+ *
+ * BeanPropertyRowMapper
+ *
+ */
+
 @Slf4j
 @Repository
 public class JdbcTemplateRepositoryV2 implements ItemRepository {
