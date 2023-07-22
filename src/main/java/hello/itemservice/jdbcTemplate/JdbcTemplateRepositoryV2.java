@@ -7,6 +7,7 @@ import hello.itemservice.repository.ItemUpdateDto;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -72,14 +73,15 @@ public class JdbcTemplateRepositoryV2 implements ItemRepository {
 
     //    resultSet to Item mapper
     private RowMapper<Item> itemRowMapper() {
-        return (rs,rowNum) -> {
-            Item item = new Item();
-            item.setId(rs.getLong("id"));
-            item.setItemName(rs.getString("item_name"));
-            item.setPrice(rs.getInt("price"));
-            item.setQuantity(rs.getInt("quantity"));
-            return item;
-        };
+//        return (rs,rowNum) -> {
+//            Item item = new Item();
+//            item.setId(rs.getLong("id"));
+//            item.setItemName(rs.getString("item_name"));
+//            item.setPrice(rs.getInt("price"));
+//            item.setQuantity(rs.getInt("quantity"));
+//            return item;
+//        };
+        return BeanPropertyRowMapper.newInstance(Item.class);
     }
 
 
