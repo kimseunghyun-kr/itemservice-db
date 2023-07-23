@@ -36,6 +36,7 @@ import java.util.*;
  * - MapSqlParameterSource
  *  * similar to map, but provides sql support such as sql query typing
  *  * found in update() method
+ *  * allows method chain
  *
  * Map
  * template.queryForObject(sql, param, itemRowMapper());
@@ -115,6 +116,8 @@ public class JdbcTemplateRepositoryV2 implements ItemRepository {
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(cond);
 
         String sql = "select id, item_name, price, quantity from item";
+//        select item_name as itemName allows for pseudonyms during object mapping
+//        beanPropertyObjectMapper converts this underscore notation(snake_case) to camelcase automatically harhar
 
         if(StringUtils.hasText(itemName) || maxPrice != null ){
             sql += " where";
