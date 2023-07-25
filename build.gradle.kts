@@ -1,3 +1,6 @@
+//https://central.sonatype.com/
+//search for mavencentral plugins here
+
 plugins {
     java
     id("org.springframework.boot") version "3.1.0"
@@ -24,6 +27,9 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+//    this is the plain mybatis -> no spring boot integration
+//    implementation("org.mybatis:mybatis:3.5.13")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
 
     //jdbctemplate
     implementation("org.springframework.boot:spring-boot-starter-jdbc")

@@ -1,4 +1,4 @@
-package hello.itemservice.jdbcTemplate;
+package hello.itemservice.repository.jdbcTemplate;
 
 import hello.itemservice.domain.Item;
 import hello.itemservice.repository.ItemRepository;

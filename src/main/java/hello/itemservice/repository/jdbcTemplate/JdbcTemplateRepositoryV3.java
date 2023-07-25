@@ -1,4 +1,4 @@
-package hello.itemservice.jdbcTemplate;
+package hello.itemservice.repository.jdbcTemplate;
 
 import hello.itemservice.domain.Item;
 import hello.itemservice.repository.ItemRepository;
@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -24,47 +25,33 @@ import java.sql.PreparedStatement;
 import java.util.*;
 
 /**
- * NamedParameterJdbcTemplate
- *
- * 3 main 'param' candidates
- * SqlParameterSource
- *  * interface
- *  ---impl---
- * - BeanPropertySqlParameterSource
- *  * creates a parameter object through JavaBeans property
- *  * found in findAll() and save()
- * - MapSqlParameterSource
- *  * similar to map, but provides sql support such as sql query typing
- *  * found in update() method
- *  * allows method chain
- *
- * Map
- * template.queryForObject(sql, param, itemRowMapper());
- *
- * BeanPropertyRowMapper
- *
+ * SimpleJdbcInsert
  */
 
 @Slf4j
 @Repository
-public class JdbcTemplateRepositoryV2 implements ItemRepository {
+public class JdbcTemplateRepositoryV3 implements ItemRepository {
 
     private final NamedParameterJdbcTemplate template;
+    private final SimpleJdbcInsert jdbcInsert;
 
-    public JdbcTemplateRepositoryV2(DataSource dataSource) {
+    public JdbcTemplateRepositoryV3(DataSource dataSource) {
         this.template = new NamedParameterJdbcTemplate(dataSource);
+//        able to auto detect fields from db through metadata and stuff
+//        able to register as a bean but not recommended as the table name will be fixed;
+//        and scoping issues that follow here
+//        usingColumns method is to be used to designate which columns will have values inserted
+        this.jdbcInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName("item")
+                .usingGeneratedKeyColumns("id");
+//              .usingColumns(col1,col2,col3)
     }
 
     @Override
     public Item save(Item item) {
-        String sql = "insert into item (item_name, price, quantity) values (:itemName, :price, :quantity)";
-
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
-        KeyHolder keyholder = new GeneratedKeyHolder();
-        template.update(sql, param, keyholder);
-
-        long key = Objects.requireNonNull(keyholder.getKey()).longValue();
-        item.setId(key);
+        Number key = jdbcInsert.executeAndReturnKey(param);
+        item.setId(key.longValue());
         return item;
 
     }
@@ -81,7 +68,7 @@ public class JdbcTemplateRepositoryV2 implements ItemRepository {
         template.update(sql,param);
     }
 
-        @Override
+    @Override
     public Optional<Item> findById(Long id) {
         String sql = "select id, item_name, price, quantity from item where id = :id";
         try {

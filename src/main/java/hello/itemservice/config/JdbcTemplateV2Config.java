@@ -1,7 +1,6 @@
 package hello.itemservice.config;
 
-import hello.itemservice.jdbcTemplate.JdbcTemplateRepositoryV1;
-import hello.itemservice.jdbcTemplate.JdbcTemplateRepositoryV2;
+import hello.itemservice.repository.jdbcTemplate.JdbcTemplateRepositoryV2;
 import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.service.ItemService;
 import hello.itemservice.service.ItemServiceV1;
