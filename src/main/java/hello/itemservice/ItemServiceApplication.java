@@ -30,14 +30,15 @@ public class ItemServiceApplication {
 	}
 
 //	@Bean
-//	@Profile("test")
-//	public DataSource dataSource() {
-//		log.info("메모리 데이터베이스 초기화");
-//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//		dataSource.setDriverClassName("org.h2.Driver");
-//		dataSource.setUrl("jdbc:h2:mem:db;DB_CLOSE_DELAY=-1");
-//		dataSource.setUsername("sa");
-//		dataSource.setPassword("");
+//	@Profile("test")    //only for test profile
+//	public DataSource dataSource() {  //use my own datasource
+//		log.info("initialising memory database");
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource(); //driverManagerDatasource
+//		dataSource.setDriverClassName("org.h2.Driver");    //define what driver is to be used
+//		dataSource.setUrl("jdbc:h2:mem:db;DB_CLOSE_DELAY=-1");   //mem:db defines that in-memory(embedded) db within JVM runtime is to be used
+//																 //DB_CLOSE_DELAY = -1 is used to prevent the database from closing when all connection is terminated
+//		dataSource.setUsername("sa");  //uname
+//		dataSource.setPassword("");   //pw
 //		return dataSource;
 //	}
 
