@@ -15,7 +15,12 @@ Update SQL:
 To use the Update SQL, you can use <update>. In this case, there are two parameters: Long id and ItemUpdateDto updateParam. If there is only one parameter, you don't need to specify @Param, but if there are multiple parameters, you need to use @Param to distinguish them.
 
 Select SQL:
-To use the Select SQL, you can use <select>. The resultType specifies the return type, and in this case, the results are mapped to the Item object. Thanks to the configuration in application.properties where mybatis.type-aliases-package=hello.itemservice.domain is specified, you don't have to write the full package name. If not, you would need to specify the complete package names.
+To use the Select SQL, you can use the ```<select>``` tag. 
+The resultType specifies the return type, and in this case,
+the results are mapped to the Item object. 
+Thanks to the configuration in application.properties where mybatis.type-aliases-package=hello.itemservice.domain is specified, you don't have to write the full package name. If not, you would need to specify the complete package names.
+
+
 
 Mybatis automatically converts underscores to camel case due to the mybatis.configuration.map-underscore-to-camel-case=true configuration (e.g., item_name becomes itemName).
 
@@ -185,7 +190,8 @@ Instead of using XML, you can write SQL directly in annotations like this:
 @Select("select id, item_name, price, quantity from item where id=#{id}")
 Optional<Item> findById(Long id);
 ```
-// Other annotations like @Insert, @Update, @Delete, and @Select are also available.
+
+Other annotations like @Insert, @Update, @Delete, and @Select are also available.
 In this case, the corresponding XML tags, such as <select id="findById">, should be removed. However, it is recommended to use annotations only for simple cases, as dynamic SQL is not handled well with annotations.
 
 For more details on writing SQL with annotations, refer to the official documentation.
@@ -198,7 +204,7 @@ Reusable SQL Fragments
 
 You can reuse SQL code using the <sql> tag:
 
-```
+```xml
 <sql id="userColumns"> ${alias}.id,${alias}.username,${alias}.password </sql>
 
 <select id="selectUsers" resultType="map">
