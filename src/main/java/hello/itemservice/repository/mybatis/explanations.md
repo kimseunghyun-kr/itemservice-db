@@ -177,9 +177,9 @@ The problem with this example is that it can cause issues when not all the condi
 ```
 This feature is used when dealing with collections and makes it easy to construct statements like WHERE IN (1,2,3,4,5,6) when passing a List as a parameter.
 
-```
-Note: For more detailed information on dynamic queries, refer to the official documentation.
-```
+
+Note: For more detailed information on dynamic queries, refer to the [official documentation](https://mybatis.org/mybatis-3/dynamic-sql.html).
+
 
 ** MyBatis Function Summary 2 - Other Features **
 ** SQL with Annotations **
@@ -194,7 +194,7 @@ Optional<Item> findById(Long id);
 Other annotations like @Insert, @Update, @Delete, and @Select are also available.
 In this case, the corresponding XML tags, such as `<select id="findById">`, should be removed. However, it is recommended to use annotations only for simple cases, as dynamic SQL is not handled well with annotations.
 
-For more details on writing SQL with annotations, refer to the official documentation.
+For more details on writing SQL with annotations, refer to the <a href="https://mybatis.org/mybatis-3/dynamic-sql.html" >official documentation</a>
 
 String Substitution
 
@@ -250,4 +250,4 @@ Complex Result Mapping
 
 MyBatis can handle complex result mappings that involve object associations. For this purpose, you can use <association>, <collection>, and other features. However, be aware that this can lead to complex performance and optimization issues. Exercise caution when using such features.
 
-For more detailed information on result mapping, refer to the official documentation.
+For more detailed information on result mapping, refer to the <a href="https://mybatis.org/mybatis-3/dynamic-sql.html" >official documentation.</a>
