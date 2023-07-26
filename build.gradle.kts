@@ -27,12 +27,19 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+//    jpa
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.2")
+
 //    this is the plain mybatis -> no spring boot integration
 //    implementation("org.mybatis:mybatis:3.5.13")
+
+//    myBatis Spring configured
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
 
     //jdbctemplate
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+//    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
     //h2 database integration
     runtimeOnly("com.h2database:h2")
 

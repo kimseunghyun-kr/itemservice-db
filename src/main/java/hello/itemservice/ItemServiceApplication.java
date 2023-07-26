@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 
 //@Import(MemoryConfig.class)
-@Import(MyBatisConfig.class)
+@Import(JpaConfig.class)
 @Slf4j
 @SpringBootApplication(scanBasePackages = "hello.itemservice.web")
 public class ItemServiceApplication {
