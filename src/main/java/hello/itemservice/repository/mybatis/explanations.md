@@ -192,7 +192,7 @@ Optional<Item> findById(Long id);
 ```
 
 Other annotations like @Insert, @Update, @Delete, and @Select are also available.
-In this case, the corresponding XML tags, such as <select id="findById">, should be removed. However, it is recommended to use annotations only for simple cases, as dynamic SQL is not handled well with annotations.
+In this case, the corresponding XML tags, such as `<select id="findById">`, should be removed. However, it is recommended to use annotations only for simple cases, as dynamic SQL is not handled well with annotations.
 
 For more details on writing SQL with annotations, refer to the official documentation.
 
@@ -202,7 +202,7 @@ The #{} syntax uses prepared statements to bind parameters with ?. Sometimes, we
 
 Reusable SQL Fragments
 
-You can reuse SQL code using the <sql> tag:
+You can reuse SQL code using the ```<sql>``` tag:
 
 ```xml
 <sql id="userColumns"> ${alias}.id,${alias}.username,${alias}.password </sql>
